@@ -1,13 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:r_router/r_router.dart';
-import 'package:r_router_example/src/page/404_page.dart';
-import 'package:r_router_example/src/page/page_five.dart';
-import 'package:r_router_example/src/page/page_four.dart';
-import 'src/page/my_page.dart';
-import 'src/page/page_one.dart';
-import 'src/page/page_three.dart';
-import 'src/page/page_two.dart';
 
 void main() {
   initRouter();
@@ -15,38 +8,6 @@ void main() {
 }
 
 void initRouter() {
-  // add new
-  RRouter.myRouter.addRouter(
-    path: '/one',
-    routerWidgetBuilder: (params) => PageOne(),
-  );
-  RRouter.myRouter.addRouter(
-    path: '/two',
-    routerWidgetBuilder: (params) => PageTwo(
-      param: params['param'],
-    ),
-  );
-  RRouter.myRouter.addRouter(
-    path: '/three',
-    routerWidgetBuilder: (params) => PageThree(),
-    routerPageBuilderType: RRouterPageBuilderType.cupertino,
-  );
-
-  RRouter.myRouter.addRouter(
-    path: '/four',
-    routerWidgetBuilder: (params) => PageFour(),
-    routerPageTransitions: ZoomPageTransitionsBuilder(),
-  );
-
-  RRouter.myRouter.addRouter(
-    path: '/five',
-    routerWidgetBuilder: (params) => PageFive(),
-  );
-
-  RRouter.myRouter.notFoundPage = (String path) => NoFoundPage(
-        path: path,
-      );
-
   RRouter.myRouter.interceptors
       .add(RRouterInterceptorWrapper(onRequest: (settings) {
     if (settings.name == '/other') {
@@ -81,7 +42,6 @@ class MyApp extends StatelessWidget {
         RRouter.myRouter.observer,
       ],
       // add new
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
